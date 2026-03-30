@@ -34,17 +34,23 @@ export default function Loja() {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {produtos.map((p) => (
           <View key={p.id} style={styles.card}>
+  
             <Image 
               source={{ uri: p.imagem }} 
-              style={{ width: 100, height: 100, borderRadius: 10 }}
+              style={styles.imagem}
             />
-            
-            <Text>{p.titulo}</Text>
-            <Text>R$ {p.preco}</Text>
 
-            <TouchableOpacity onPress={() => adicionar(p)}>
-              <Text>Comprar</Text>
+            <Text style={styles.nome}>{p.titulo}</Text>
+
+            <Text style={styles.preco}>R$ {p.preco}</Text>
+
+            <TouchableOpacity 
+              style={styles.botao}
+              onPress={() => adicionar(p)}
+            >
+              <Text style={styles.textoBotao}>Comprar</Text>
             </TouchableOpacity>
+
           </View>
         ))}
       </ScrollView>
@@ -69,7 +75,46 @@ export default function Loja() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   titulo: { fontSize: 20, fontWeight: 'bold', marginBottom: 20 },
-  card: { padding: 20, borderWidth: 1, marginRight: 10, borderRadius: 10, width: 150 },
-  botao: { backgroundColor: 'blue', padding: 10, marginTop: 10, borderRadius: 5 },
-  botaoIrCarrinho: { backgroundColor: 'green', padding: 15, marginTop: 30, borderRadius: 10 }
+  botaoIrCarrinho: { backgroundColor: 'green', padding: 15, marginTop: 30, borderRadius: 10 },
+
+  card: {
+  backgroundColor: '#fff',
+  padding: 15,
+  borderRadius: 15,
+  marginRight: 15,
+  width: 180,
+  elevation: 4
+},
+
+imagem: {
+  width: '100%',
+  height: 120,
+  borderRadius: 10,
+  marginBottom: 10
+},
+
+nome: {
+  fontSize: 16,
+  fontWeight: 'bold'
+},
+
+preco: {
+  fontSize: 16,
+  color: 'green',
+  marginVertical: 5,
+  fontWeight: 'bold'
+},
+
+botao: {
+  backgroundColor: '#007bff',
+  padding: 10,
+  borderRadius: 8,
+  alignItems: 'center',
+  marginTop: 10
+},
+
+textoBotao: {
+  color: '#fff',
+  fontWeight: 'bold'
+}
 });
